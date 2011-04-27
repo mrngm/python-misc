@@ -33,8 +33,8 @@ def eleven_test(number):
 	for i in range(8):
 		total += int(fullnumber[i])*(9-i)
 		print "Fullnumber["+str(i)+"]="+fullnumber[i]+", multiplier: " + str(9-i) + " Total: " + str(total)
-	checkdigit = total / 11
-	print "Check digit raw: "+str(checkdigit)
+	checkdigit = total % 11
+	print "Check digit raw: "+str(checkdigit)+" total: "+str(total)
 	if checkdigit == 10:
 		checkdigit = 0
 	print "BSN: " + fullnumber + ", check digit: " + str(checkdigit)
