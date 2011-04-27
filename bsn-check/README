@@ -14,15 +14,16 @@ pos=0 is the first digit, pos=1 the second etc.
 The check is as follows:
 * Multiply digit[0] with 9
 * Multiply digit[1] with 8
-* Multiply digit[2] with 7
-* Multiply digit[3] with 6
-* Multiply digit[4] with 5
-* Multiply digit[5] with 4
+* [..]
 * Multiply digit[6] with 3
 * Multiply digit[7] with 2
-* Sum above outcomes
+* Sum above outcomes (sum_outcome)
 * Divide the sum by eleven
-* The outcome is digit[8], unless it is 10.
+* The remainder of the division is digit[8], unless it is 10. (remainder)
+** If the remainder is 10, then the check digit is 0. (corrected_remainder)
+* BSN is valid if the remainder or corrected_remainder is digit[8]
+
+* Alternatively: evaluate (sum_outcome % 11 == digit[8]) for a valid BSN
 
 [1] http://www.burgerservicenummer.nl/dsresource?objectid=33937&type=org
 [2] https://zoek.officielebekendmakingen.nl/kst-30312-3.html
