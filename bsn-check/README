@@ -24,6 +24,7 @@ The check is as follows:
 * BSN is valid if the remainder or corrected_remainder is digit[8]
 
 * Alternatively: evaluate (sum_outcome % 11 == digit[8]) for a valid BSN
+* Alternatively: evaluate ((sum_outcome - digit[8]) % 11 == 0) for a valid BSN
 
 [1] http://www.burgerservicenummer.nl/dsresource?objectid=33937&type=org
 [2] https://zoek.officielebekendmakingen.nl/kst-30312-3.html
