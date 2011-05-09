@@ -24,10 +24,10 @@ This script was made by mrngm, source at https://github.com/mrngm/python-misc/
 def generate_checkdigit(bsn):
 	if len(prev) > 8:
 		sys.exit("Number is too long, exiting");
-	elif len(number) == 7 and number.isdigit():
-		fullnumber = "0" + number[0:len(number)]
-	elif len(number) == 8 and number.isdigit():
-		fullnumber = number
+	elif len(bsn) == 7 and bsn.isdigit():
+		fullbsn = "0" + bsn[0:len(bsn)]
+	elif len(bsn) == 8 and bsn.isdigit():
+		fullbsn = bsn
 	else:
 		sys.exit("Number too short or not a number, exiting")
 
@@ -40,16 +40,16 @@ def generate_checkdigit(bsn):
 def generate_next(prev):
 	if len(prev) > 9:
 		sys.exit("Number is too long, exiting");
-	elif len(number) == 8 and number.isdigit():
-		fullnumber = "0" + number[0:len(number)]
-	elif len(number) == 9 and number.isdigit():
-		fullnumber = number
+	elif len(prev) == 8 and prev.isdigit():
+		fullprev = "0" + prev[0:len(prev)]
+	elif len(prev) == 9 and prev.isdigit():
+		fullprev = prev
 	else:
-		sys.exit("Number too short or not a number, exiting");
+		sys.exit("Number too short or not a prev, exiting");
 
 	# strip the last digit, this is the check digit
-	fullnumber = int(fullnumber[0:len(number)-1])
-	fullnumber++
+	fullnumber = int(fullnumber[0:len(prev)-1])
+	fullnumber += 1
 	checkdigit = generate_checkdigit(str(fullnumber))
 	fullnumber = str(fullnumber) + str(checkdigit)
 	return fullnumber
@@ -60,11 +60,11 @@ if len(sys.argv) < 2:
 	print_readme()
 elif len(sys.argv) == 2:
 	# generate sys.argv[1] number of BSNs
-	for i in range(sys.argv[1]):
-		print generate_next(000000000)
+	for i in range(int(sys.argv[1])):
+		print generate_next("000000000")
 elif len(sys.argv) == 3:
 	# generate sys.argv[1] number of BSNs starting from sys.argv[2]
-	for i in range(sys.argv[1]):
+	for i in range(int(sys.argv[1])):
 		print generate_next(sys.argv[2])
 else:
 	# catchall, print README
