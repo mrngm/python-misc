@@ -48,7 +48,7 @@ def generate_next(prev):
 		sys.exit("Number too short or not a prev, exiting");
 
 	# strip the last digit, this is the check digit
-	fullnumber = int(fullnumber[0:len(prev)-1])
+	fullnumber = int(prev[0:len(prev)-1])
 	fullnumber += 1
 	checkdigit = generate_checkdigit(str(fullnumber))
 	fullnumber = str(fullnumber) + str(checkdigit)
