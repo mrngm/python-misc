@@ -55,3 +55,17 @@ def generate_next(prev):
 	return fullnumber
 
 
+if len(sys.argv) < 2:
+	# print README
+	print_readme()
+elif len(sys.argv) == 2:
+	# generate sys.argv[1] number of BSNs
+	for i in range(sys.argv[1]):
+		print generate_next(000000000)
+elif len(sys.argv) == 3:
+	# generate sys.argv[1] number of BSNs starting from sys.argv[2]
+	for i in range(sys.argv[1]):
+		print generate_next(sys.argv[2])
+else:
+	# catchall, print README
+	print_readme()
