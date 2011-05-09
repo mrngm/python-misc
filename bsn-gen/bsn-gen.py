@@ -22,7 +22,7 @@ This script was made by mrngm, source at https://github.com/mrngm/python-misc/
 # Generates the checkdigit for a 7 or 8 digit BSN
 # and prepends a 0 if necessary
 def generate_checkdigit(bsn):
-	if len(prev) > 8:
+	if len(bsn) > 8:
 		sys.exit("Number is too long, exiting");
 	elif len(bsn) == 7 and bsn.isdigit():
 		fullbsn = "0" + bsn[0:len(bsn)]
