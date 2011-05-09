@@ -29,7 +29,7 @@ def generate_checkdigit(bsn):
 	elif len(bsn) == 8 and bsn.isdigit():
 		fullbsn = bsn
 	else:
-		sys.exit("Number too short or not a number, exiting")
+		sys.exit("Generate_checkdigit: Number too short or not a number, exiting")
 
 	total = 0
 	for i in range(8):
@@ -45,14 +45,17 @@ def generate_next(prev):
 	elif len(prev) == 9 and prev.isdigit():
 		fullprev = prev
 	else:
-		sys.exit("Number too short or not a prev, exiting");
+		sys.exit("Generate_next: Number too short or not a prev, exiting");
 
 	# strip the last digit, this is the check digit
 	fullnumber = int(prev[0:len(prev)-1])
 	fullnumber += 1
-	checkdigit = generate_checkdigit(str(fullnumber))
-	fullnumber = str(fullnumber) + str(checkdigit)
-	return fullnumber
+	strnumber = str(fullnumber)
+	for i in range(8-len(strnumber)):
+		strnumber = "0" + strnumber
+	checkdigit = generate_checkdigit(strnumber))
+	strnumber = strnumber + str(checkdigit)
+	return strnumber
 
 
 if len(sys.argv) < 2:
@@ -61,7 +64,7 @@ if len(sys.argv) < 2:
 elif len(sys.argv) == 2:
 	# generate sys.argv[1] number of BSNs
 	for i in range(int(sys.argv[1])):
-		print generate_next("000000000")
+		print generate_next("123456789")
 elif len(sys.argv) == 3:
 	# generate sys.argv[1] number of BSNs starting from sys.argv[2]
 	for i in range(int(sys.argv[1])):
