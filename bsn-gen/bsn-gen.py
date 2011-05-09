@@ -9,11 +9,12 @@
 import sys
 
 def print_readme():
-	print """bsn-gen.py [number] [from]
+	print """bsn-gen.py [number] [from] [distance]
 
 Generates [number] of valid BSNs
 [number]	Number of BSNs to generate
 [from]		8 or 9 digit BSN to start from
+[distance]	add <distance> to the next BSN to be generated
 
 When no number is given, this help message is displayed.
 This script was made by mrngm, source at https://github.com/mrngm/python-misc/
@@ -39,7 +40,7 @@ def generate_checkdigit(bsn):
 		checkdigit = 0
 	return checkdigit
 
-def generate_next(prev):
+def generate_next(prev, distance):
 	if len(prev) > 9:
 		sys.exit("Number is too long, exiting");
 	elif len(prev) == 8 and prev.isdigit():
@@ -50,14 +51,26 @@ def generate_next(prev):
 		sys.exit("Generate_next: Number too short or not a prev, exiting");
 
 	# strip the last digit, this is the check digit
-	fullnumber = int(prev[0:len(prev)-1])
-	fullnumber += 1
-	strnumber = str(fullnumber)
-	for i in range(8-len(strnumber)):
-		strnumber = "0" + strnumber
+	strnumber = increase_bsn(prev, distance)
 	checkdigit = generate_checkdigit(strnumber)
 	strnumber = strnumber + str(checkdigit)
 	return strnumber
+
+def increase_bsn(bsn, number):
+	fullnumber = int(bsn[0:len(bsn)-1])
+	fullnumber += number
+	strnumber = str(fullnumber)
+	for i in range(8-len(strnumber)):
+		strnumber = "0" + strnumber
+	return strnumber
+
+def generate(bsn, distance, number):
+	bsn = generate_next(bsn, distance)
+	print bsn
+	for i in range(number):
+		bsn = generate_next(bsn, distance)
+		print bsn
+
 
 
 if len(sys.argv) < 2:
@@ -67,14 +80,15 @@ elif len(sys.argv) == 2:
 	# generate sys.argv[1] number of BSNs
 	bsn = "123456789"
 	for i in range(int(sys.argv[1])):
-		bsn = generate_next(bsn)
+		bsn = generate_next(bsn, 1)
 		print bsn
 elif len(sys.argv) == 3:
 	# generate sys.argv[1] number of BSNs starting from sys.argv[2]
-	bsn = sys.argv[2]
-	for i in range(int(sys.argv[1])):
-		bsn = generate_next(bsn)
-		print bsn
+	generate(sys.argv[2], 1, int(sys.argv[1]))
+elif len(sys.argv) == 4:
+	# Same as above, but skip sys.argv[3] BSNs, creating gaps
+	print "argv = 4"
+	generate(sys.argv[2], int(sys.argv[3]), int(sys.argv[1]))
 else:
 	# catchall, print README
 	print_readme()
