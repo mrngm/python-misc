@@ -35,6 +35,8 @@ def generate_checkdigit(bsn):
 	for i in range(8):
 		total += int(bsn[i])*(9-i)
 	checkdigit = total % 11
+	if checkdigit is 10:
+		checkdigit = 0
 	return checkdigit
 
 def generate_next(prev):
@@ -53,7 +55,7 @@ def generate_next(prev):
 	strnumber = str(fullnumber)
 	for i in range(8-len(strnumber)):
 		strnumber = "0" + strnumber
-	checkdigit = generate_checkdigit(strnumber))
+	checkdigit = generate_checkdigit(strnumber)
 	strnumber = strnumber + str(checkdigit)
 	return strnumber
 
@@ -63,12 +65,16 @@ if len(sys.argv) < 2:
 	print_readme()
 elif len(sys.argv) == 2:
 	# generate sys.argv[1] number of BSNs
+	bsn = "123456789"
 	for i in range(int(sys.argv[1])):
-		print generate_next("123456789")
+		bsn = generate_next(bsn)
+		print bsn
 elif len(sys.argv) == 3:
 	# generate sys.argv[1] number of BSNs starting from sys.argv[2]
+	bsn = sys.argv[2]
 	for i in range(int(sys.argv[1])):
-		print generate_next(sys.argv[2])
+		bsn = generate_next(bsn)
+		print bsn
 else:
 	# catchall, print README
 	print_readme()
