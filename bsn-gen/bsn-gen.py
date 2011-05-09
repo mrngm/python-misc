@@ -78,16 +78,12 @@ if len(sys.argv) < 2:
 	print_readme()
 elif len(sys.argv) == 2:
 	# generate sys.argv[1] number of BSNs
-	bsn = "123456789"
-	for i in range(int(sys.argv[1])):
-		bsn = generate_next(bsn, 1)
-		print bsn
+	generate("123456789", 1, int(sys.argv[1]))
 elif len(sys.argv) == 3:
 	# generate sys.argv[1] number of BSNs starting from sys.argv[2]
 	generate(sys.argv[2], 1, int(sys.argv[1]))
 elif len(sys.argv) == 4:
 	# Same as above, but skip sys.argv[3] BSNs, creating gaps
-	print "argv = 4"
 	generate(sys.argv[2], int(sys.argv[3]), int(sys.argv[1]))
 else:
 	# catchall, print README
