@@ -38,10 +38,8 @@ def ethergids_to_dict(str):
 	info['ipaddr']  = splitted[2]
 	info['swport']  = splitted[3]
 	if 'ap-huyg' in splitted[3]:
-		print "Die is der"
 		info['loc'] = location_from_ap(splitted[3])
 	else:
-		print "Nee hoor"
 		info['loc'] = splitted[4]
 	info['name']    = splitted[5]
 	return info
@@ -63,7 +61,7 @@ def location_from_ap(ap):
 	return aploc
 
 def print_info(information):
-	print "Requested information for MAC address " + information['macaddr'] + ":"
+	print "Requested information about '" + information['macaddr'] + "'':"
 	for i in information['result']:
 		print """[""" + i['macaddr'] + """]:
 	Date:        """ + i['date'] + """
