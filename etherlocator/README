@@ -1,0 +1,12 @@
+etherlocator is an extension to ethergids, providing a somewhat nicer overview
+of information about connected devices to the university network in Nijmegen.
+Given a location file (not included), it can display the location of the
+wireless access point a client is connected to.
+
+By default, it only show results from "today", i.e. the current date is used to
+filter the results. This might change in a future version.
+
+Disclaimer:
+I cannot be held responsible for incorrect information, abuse claims from
+(network) administrators or other stuff related to the usage of this tool. Usage
+of this tool is at your own risk.
