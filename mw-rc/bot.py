@@ -50,6 +50,7 @@ while 1:
 			if (len(line) > 2):
 				if(line[1]=="NOTICE" and line[2] == "Auth" and line[3] == ":Welcome"):
 					auth=1
+			if (len(line) >= 5):
 				if(line[3]==":WikiRC:" and line[4] == "src"):
 					s.send("PRIVMSG " + CHANNEL + " :src at https://github.com/mrngm/python-misc/tree/master/mw-rc/\r\n")
 			print line
